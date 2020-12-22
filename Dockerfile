@@ -14,8 +14,8 @@ RUN curl -LO https://get.helm.sh/helm-v3.4.0-linux-amd64.tar.gz && tar -xvf ./he
 ENV TERRAFORM_VERSION=0.14.3
 
 RUN apt-get install unzip
-RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip 
-RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin 
+RUN curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip 
+RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zeip -d /usr/bin 
 RUN install terraform /usr/local/bin/
 RUN terraform --version 
 

@@ -11,9 +11,17 @@ RUN cd /root && curl -fsSL https://get.docker.com -o get-docker.sh && sh get-doc
 RUN curl -LO https://get.helm.sh/helm-v3.4.0-linux-amd64.tar.gz && tar -xvf ./helm-v3.4.0-linux-amd64.tar.gz && mv ./linux-amd64/helm /usr/local/bin/helm
 
 # install terraform
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-RUN apt-get update && sudo apt-get install terraform
+ENV TERRAFORM_VERSION=0.14.3
+
+RUN apt-get install unzip
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip 
+RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin 
+RUN install terraform /usr/local/bin/
+RUN terraform --version 
+
+# RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+# RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+# RUN apt-get update && sudo apt-get install terraform
 
 #install AWS CLI
 

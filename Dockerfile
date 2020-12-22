@@ -16,7 +16,7 @@ ENV TERRAFORM_VERSION=0.14.3
 RUN apt-get install unzip
 RUN curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip 
 RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin 
-RUN install terraform /usr/local/bin/
+RUN mv terraform /usr/local/bin/
 RUN terraform --version 
 
 # RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -

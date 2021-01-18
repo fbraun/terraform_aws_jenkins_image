@@ -6,7 +6,7 @@ pipeline {
     stage('init') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins_Node', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        AWS("--region=cn-north-1 s3 ls")
+        sh 'aws --region cn-north-1 s3 ls'
           
         sh 'terraform init'
       }
